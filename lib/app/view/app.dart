@@ -68,6 +68,13 @@ class _TwilioPageState extends State<TwilioPage> {
     );
   }
 
+  Future<void> sendWhatsApp() async {
+    await twilioSendWsp.sendWhatsApp(
+      toNumber: '+51923873749',
+      messageBody: 'Hola, buen día',
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
