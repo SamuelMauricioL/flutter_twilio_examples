@@ -75,6 +75,29 @@ class _TwilioPageState extends State<TwilioPage> {
     );
   }
 
+  Future<void> getSms() async {
+    final data = await twilioSendSms.getSmsList();
+
+    data.messages.reversed.map(
+      (msg) {
+        final direction = msg.direction;
+        final from = msg.from;
+        final to = msg.to;
+        final body = msg.body;
+        final message = '$direction De $from para $to || mensaje:  $body';
+        // ignore: avoid_print
+        print(message);
+      },
+    ).toList();
+  }
+
+  Future<void> getSpecificSms() async {
+    final message =
+        await twilioSendSms.getSMS('SMde538ef9542e4b7ea5fcd1a496d92dbd');
+    // ignore: avoid_print
+    print(message.body);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
